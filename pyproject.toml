@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yottaflex"
+version = "0.1.0"
+description = "Synthetic workforce retention dataset generator"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["yottaflex*"]

@@ -6,7 +6,17 @@ One-paragraph summary of the problem and approach.
 Work in progress (challenge started 30 Oct 2026).
 
 ## Quick start
-(install / configure / run / verify: to be filled)
+
+From the repository root, install the project into the active Python environment
+and generate the full dataset:
+
+```powershell
+python -m pip install -e .
+python -m yottaflex.generate --n-employees 10000 --seed 20261022 --out data/full
+```
+
+Use `--no-inject` to generate the clean baseline without injected anomalies or
+ground truth.
 
 ## Repository layout
 (to be filled)
