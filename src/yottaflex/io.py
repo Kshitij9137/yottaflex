@@ -22,7 +22,7 @@ def write_ground_truth(gt: pd.DataFrame, out_dir) -> dict[str, str]:
     """ground_truth.csv and ground_truth.json (identical content, two formats)."""
     out = Path(out_dir); out.mkdir(parents=True, exist_ok=True)
     gt.to_csv(out / "ground_truth.csv", index=False, encoding="utf-8", lineterminator="\n")
-    (out / "ground_truth.json").write_text(gt.to_json(orient="records", indent=2) + "\n", encoding="utf-8")
+    (out / "ground_truth.json").write_bytes((gt.to_json(orient="records", indent=2) + "\n").encode("utf-8"))  # bytes: no CRLF translation on Windows
     return {f: hashlib.sha256((out / f).read_bytes()).hexdigest() for f in ("ground_truth.csv", "ground_truth.json")}
 
 

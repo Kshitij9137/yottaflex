@@ -26,7 +26,7 @@ def main(argv=None) -> int:
     meta = {**ds.meta, "sha256": sums, "generator_command":
             f"python -m yottaflex.generate --n-employees {a.n_employees} --seed {a.seed}"
             + (" --no-inject" if a.no_inject else "") + " --out <dir>"}
-    Path(a.out, "generation_report.json").write_text(json.dumps(meta, indent=2, sort_keys=True) + "\n")
+    Path(a.out, "generation_report.json").write_bytes((json.dumps(meta, indent=2, sort_keys=True) + "\n").encode("utf-8"))
     print(json.dumps({k: meta[k] for k in ("n_employees", "seed", "voluntary_attrition_rate",
                                            "involuntary_attrition_rate", "rule_score_auc_next_quarter",
                                            "row_counts", "ground_truth_counts")
