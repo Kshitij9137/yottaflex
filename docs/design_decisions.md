@@ -198,6 +198,8 @@ Benign decoys (expected `do_not_flag`) are **untouched natural rows** sampled at
 
 Rules the generator enforces and the tests check:
 - One employee-level anomaly per employee (leak, post-exit snapshot and label mismatch never overlap).
+- Late-recorded rows are only injected for employees with no interventions, because an intervention's `engagement_delta` is derived from those surveys and would silently go stale.
+- An injected row must be defective in its labelled way only. Phase 4 found one inserted snapshot whose derived `months_since_last_promotion` also broke (it counted a lateral move); that is fixed and the validator now reports zero unexplained violations.
 - Every changed cell or inserted row is listed in the ground truth, and every listed injected record really differs from the baseline (`test_injection_touches_only_labelled_records`).
 - Decoys are never injected records.
 - `original_value` stores the pre-injection values as JSON, so every corruption is reversible.
@@ -245,5 +247,6 @@ Rules the generator enforces and the tests check:
 | 2026-10-30 | Window set to 2024Q4-2026Q3 (was 2025Q1-2026Q4 in the draft plan) | Keep every record in the past |
 | 2026-10-30 | Phase 2 tuning: stagnation grace 36 months (was 24), planned-peak boost 4-10 h (was 7-14), signal top 1.5% (was 3%), workload index weights 0.55/0.30/0.15 | First 10k run: 49% of snapshots were stagnating and 80% of peaks looked like overload, which made the benign case the norm |
 | 2026-10-30 | Phase 3: label mismatch has three subtypes, unreviewed score has three, and post-exit snapshots insert parent and child rows together; random stream `anomalies` appended (existing streams unchanged) | Keeps joins valid and makes each anomaly independently detectable |
+| 2026-10-30 | Phase 4: `DUP-ROW` is not applied to Employee; late-recorded leaks skip employees with interventions; post-exit snapshots derive `months_since_last_promotion` from Promotion events only | The validator found a false positive on the clean baseline (15 coincidental identical employee rows), a stale derived value, and an accidental second defect on an inserted row |
 | 2026-10-30 | `recorded_at` is end-of-day on the snapshot date, not +1-10 days | Otherwise the snapshot for a cutoff quarter would itself be unavailable at the cutoff |
 | 2026-10-30 | AttritionOutcome stores termination facts plus the test-cutoff label; earlier labels recomputed | Matches the one-per-employee ID `OUT-<employee-id>-2026` and keeps labels derived |
