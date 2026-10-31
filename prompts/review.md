@@ -1,3 +1,7 @@
+# Repository Review Prompt Record
+
+The following is the review request retained in the project. The tool and date associated with this individual record were not recorded, so they are not inferred. This is a selected prompt record, not a complete AI conversation transcript.
+
 prompt:
 
 Please review my repository against the assignment below. I’m preparing this project for an apprenticeship submission and want an honest, evidence-based assessment of how well it meets the technical requirements.
