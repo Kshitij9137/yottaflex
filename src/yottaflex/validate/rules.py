@@ -42,7 +42,8 @@ def rule(rid, category, entity, description, maps_to=None):
 
 
 def _ids(df: pd.DataFrame, mask) -> list:
-    m = pd.Series(np.asarray(mask, dtype=object), index=df.index).fillna(False).astype(bool)
+    m = pd.Series(np.asarray(mask, dtype=object), index=df.index)
+    m = m.where(m.notna(), False).astype(bool)          # NA counts as "no violation" (no FutureWarning downcast)
     return df.loc[m, df.columns[0]].tolist()
 
 

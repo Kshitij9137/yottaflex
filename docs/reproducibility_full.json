@@ -1,0 +1,128 @@
+{
+  "committed_mismatches": [],
+  "equals_committed": true,
+  "files": {
+    "attrition_outcome.csv": {
+      "rows": 10000,
+      "sha256": "84dbb5dc5cf77eab53c3a2b348741b1735f80a274678368188e75ea0cc3ac843"
+    },
+    "compensation_band.csv": {
+      "rows": 105,
+      "sha256": "bab23a6c737a0e12014e14fc80a4ba7b3cf2697c1f0f2d57b14f6036534c05f1"
+    },
+    "employee.csv": {
+      "rows": 10000,
+      "sha256": "a5ce9b8cb600ffb2d8cc3fbff70291fd8e5a3ba2e150e808f3626525c6a4859e"
+    },
+    "employee_team_assignment.csv": {
+      "rows": 10695,
+      "sha256": "934179d0b7fc071611703ee1ec4ecffe475373d498ac168692fce60f678c6d86"
+    },
+    "engagement_survey.csv": {
+      "rows": 70933,
+      "sha256": "61744373b76d76758f38fee61e6e835b4f098fbf79eb00959741e69f03d8d4a2"
+    },
+    "export/export_report.json": {
+      "rows": null,
+      "sha256": "d2f63d0aa371d52c2c6a110f00a893559369ff1731f42c094cb3a329de8f96f0"
+    },
+    "export/json/attrition_outcome.json": {
+      "rows": null,
+      "sha256": "70fb4841c6d777520d91c3fa06ed3bb339012aa8b0a7265c7a4b743e5097a088"
+    },
+    "export/json/compensation_band.json": {
+      "rows": null,
+      "sha256": "2744a9f5b3266033e5cb0e1292bd2b7ffbc86d8e72cc732a4bd7f5a6d27a42d2"
+    },
+    "export/json/employee.json": {
+      "rows": null,
+      "sha256": "d59416930824980704b10b4086f14defa20feb4a93cb215c1f6046b5675460c4"
+    },
+    "export/json/employee_team_assignment.json": {
+      "rows": null,
+      "sha256": "29f948e5e2d6bacd558b06c8bc89f2225cf92fd60ef2257d9b42d1067c041a4e"
+    },
+    "export/json/engagement_survey.json": {
+      "rows": null,
+      "sha256": "9948e78d1925785ff7fc1c8d3df8b7c0d2945ebc66230955e538afdb6ec46d53"
+    },
+    "export/json/intervention.json": {
+      "rows": null,
+      "sha256": "4fa53ff05d1d0c5d556ba51ed6ec27305f7f8d266a56003c0ac8177d5ecb1021"
+    },
+    "export/json/promotion_history.json": {
+      "rows": null,
+      "sha256": "e916e1c53e3fcd3a47b2f0c52c622507948da11c78dbd7614f86466cc7a311e5"
+    },
+    "export/json/role.json": {
+      "rows": null,
+      "sha256": "3b0e1c76f62563b5d3c81de306a55ab66e91860ad0b821875316880963dc1887"
+    },
+    "export/json/team.json": {
+      "rows": null,
+      "sha256": "63612deeb8f33f819240914595f0ea1880282d6239e102de3da24c3ca1f31b72"
+    },
+    "export/json/tenure_snapshot.json": {
+      "rows": null,
+      "sha256": "7439a295c05e0514f1c2390ac977d168249f9c016617a2718998cbb0d4678f3d"
+    },
+    "export/json/workload_snapshot.json": {
+      "rows": null,
+      "sha256": "74faff4ab2eba4c3923ec58e4a405b25ef27aced1a11d2d4a4f67d9c4d896733"
+    },
+    "export/schema.sql": {
+      "rows": null,
+      "sha256": "5c7a90dd24aaf019f5396946e30881f83b1514fa1afcedd39b7adc803021c6c9"
+    },
+    "export/seed.sql": {
+      "rows": null,
+      "sha256": "2e64764525f438dd51eeffdf6af1a570c004820489fde965a3dd46341f1b056c"
+    },
+    "generation_report.json": {
+      "rows": null,
+      "sha256": "1bd5325048f6bb525202babf62ce4a5fc01adfac6872ca7f1b62fda69231e815"
+    },
+    "ground_truth.csv": {
+      "rows": 1552,
+      "sha256": "a05f72cdfbd48afbbbe7a61311d28c5607650935a1fcee460098252702f97ab3"
+    },
+    "ground_truth.json": {
+      "rows": null,
+      "sha256": "20104174afdf553a8b27513296eb692d5f578febc6da53076f22d5e069484a00"
+    },
+    "intervention.csv": {
+      "rows": 707,
+      "sha256": "144a11e422c69c96af7c06eb934bdec8af9e96a520874d51c5c30440b198ac2f"
+    },
+    "promotion_history.csv": {
+      "rows": 8499,
+      "sha256": "945361bd182c574eb599d27c92dc908aa6ccd6fe7af95749f58cf60b25f20a37"
+    },
+    "role.csv": {
+      "rows": 35,
+      "sha256": "61d01fac6550b0f1c404d9a1d2e4f10a666644d66ab92707be257e96b7e85831"
+    },
+    "team.csv": {
+      "rows": 400,
+      "sha256": "b0478ee32f9e76b7062e9ebfa19b26af19b566a301336738d6c615ef2d1a3057"
+    },
+    "tenure_snapshot.csv": {
+      "rows": 70933,
+      "sha256": "e19947af57964a1243436bd2b22e04dcbfe4d3aba7281e96c08cf92a97f9dda3"
+    },
+    "workload_snapshot.csv": {
+      "rows": 70933,
+      "sha256": "a42fb3fafe12a8b0ce1aebbfc7396f639b1177ece38b218566cbed5f162d3996"
+    }
+  },
+  "files_compared": 28,
+  "generator_command": "python -m yottaflex.generate --n-employees 10000 --seed 20261022 --out <dir>",
+  "label": "full",
+  "mismatches": [],
+  "n_employees": 10000,
+  "negative_control_differs": true,
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.10.11",
+  "run_a_equals_run_b": true,
+  "seed": 20261022
+}

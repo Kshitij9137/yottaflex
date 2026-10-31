@@ -1,0 +1,36 @@
+{
+  "row_counts": {
+    "attrition_outcome": 500,
+    "compensation_band": 105,
+    "employee": 500,
+    "employee_team_assignment": 536,
+    "engagement_survey": 3540,
+    "intervention": 39,
+    "promotion_history": 451,
+    "role": 35,
+    "team": 19,
+    "tenure_snapshot": 3540,
+    "workload_snapshot": 3540
+  },
+  "sha256": {
+    "json/attrition_outcome.json": "d718d84da6922be3100429618eed719f581bc7d69cb64fdd97ac9398fe9fb0a1",
+    "json/compensation_band.json": "2744a9f5b3266033e5cb0e1292bd2b7ffbc86d8e72cc732a4bd7f5a6d27a42d2",
+    "json/employee.json": "6afbf245e459684bf2a45da95cb3c0e65b5d5a933edbed51434f08721ae2f9cf",
+    "json/employee_team_assignment.json": "f21b77b8d95b97a903b1e27c4a8fde030c4c8cd7b130f4eb1fcce8b62c277d6d",
+    "json/engagement_survey.json": "5bed2aa4ec53df52d2a75ec7429fc7942a6047408015c3ae62610a1385a2c3cf",
+    "json/intervention.json": "63cccfd2aa4fd5b7188d15f6c58f18d4c11f9db501baae6a5bb188bb409c1013",
+    "json/promotion_history.json": "0be0af727cd7776cc0112ca240fe0308515ac6df4d98d68aaf8b605eba93eb9d",
+    "json/role.json": "3b0e1c76f62563b5d3c81de306a55ab66e91860ad0b821875316880963dc1887",
+    "json/team.json": "9753c94e0aa5b048ed1a47cb0aa4a89078826406b028d6108135d69185c785c5",
+    "json/tenure_snapshot.json": "3268a5273cad99a117dc302f8166266aceb8ff03a6667ffb2828d264e2a3f888",
+    "json/workload_snapshot.json": "1164865d3a2ec6e8e4718d14324c3fbdeffd3bc290facdcdedc91c2cc3045bf8",
+    "schema.sql": "5c7a90dd24aaf019f5396946e30881f83b1514fa1afcedd39b7adc803021c6c9",
+    "seed.sql": "9a78f21f9b954a20baae070bfbc545597360f4f65f53b215acdc2565dee17362"
+  },
+  "sql_load_check": {
+    "foreign_key_violations": 0,
+    "loaded": true,
+    "row_count_mismatches": {}
+  },
+  "strict_cardinality": false
+}

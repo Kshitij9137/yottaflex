@@ -1,0 +1,21 @@
+[
+{"team_id": "TEAM-0001", "team_name": "Engineering Team 1", "job_family": "Engineering", "manager_employee_id": "EMP-000024", "planned_peak_quarter": 3, "created_date": "2018-02-22"},
+{"team_id": "TEAM-0002", "team_name": "Engineering Team 2", "job_family": "Engineering", "manager_employee_id": "EMP-000247", "planned_peak_quarter": 2, "created_date": "2023-02-21"},
+{"team_id": "TEAM-0003", "team_name": "Engineering Team 3", "job_family": "Engineering", "manager_employee_id": "EMP-000296", "planned_peak_quarter": 1, "created_date": "2024-02-14"},
+{"team_id": "TEAM-0004", "team_name": "Engineering Team 4", "job_family": "Engineering", "manager_employee_id": "EMP-000193", "planned_peak_quarter": 1, "created_date": "2023-04-26"},
+{"team_id": "TEAM-0005", "team_name": "Engineering Team 5", "job_family": "Engineering", "manager_employee_id": "EMP-000032", "planned_peak_quarter": 1, "created_date": "2023-09-02"},
+{"team_id": "TEAM-0006", "team_name": "Engineering Team 6", "job_family": "Engineering", "manager_employee_id": "EMP-000088", "planned_peak_quarter": 4, "created_date": "2021-12-29"},
+{"team_id": "TEAM-0007", "team_name": "Engineering Team 7", "job_family": "Engineering", "manager_employee_id": "EMP-000071", "planned_peak_quarter": 4, "created_date": "2021-05-03"},
+{"team_id": "TEAM-0008", "team_name": "Product Team 1", "job_family": "Product", "manager_employee_id": "EMP-000046", "planned_peak_quarter": 2, "created_date": "2020-09-12"},
+{"team_id": "TEAM-0009", "team_name": "Product Team 2", "job_family": "Product", "manager_employee_id": "EMP-000022", "planned_peak_quarter": 2, "created_date": "2017-11-13"},
+{"team_id": "TEAM-0010", "team_name": "Sales Team 1", "job_family": "Sales", "manager_employee_id": "EMP-000249", "planned_peak_quarter": 1, "created_date": "2022-06-16"},
+{"team_id": "TEAM-0011", "team_name": "Sales Team 2", "job_family": "Sales", "manager_employee_id": "EMP-000051", "planned_peak_quarter": 3, "created_date": "2020-08-01"},
+{"team_id": "TEAM-0012", "team_name": "Sales Team 3", "job_family": "Sales", "manager_employee_id": "EMP-000052", "planned_peak_quarter": 4, "created_date": "2016-11-12"},
+{"team_id": "TEAM-0013", "team_name": "Customer_Support Team 1", "job_family": "Customer_Support", "manager_employee_id": "EMP-000321", "planned_peak_quarter": 1, "created_date": "2018-04-03"},
+{"team_id": "TEAM-0014", "team_name": "Customer_Support Team 2", "job_family": "Customer_Support", "manager_employee_id": "EMP-000304", "planned_peak_quarter": 4, "created_date": "2018-01-09"},
+{"team_id": "TEAM-0015", "team_name": "Customer_Support Team 3", "job_family": "Customer_Support", "manager_employee_id": "EMP-000064", "planned_peak_quarter": 2, "created_date": "2022-04-12"},
+{"team_id": "TEAM-0016", "team_name": "Operations Team 1", "job_family": "Operations", "manager_employee_id": "EMP-000018", "planned_peak_quarter": 4, "created_date": "2019-08-30"},
+{"team_id": "TEAM-0017", "team_name": "Operations Team 2", "job_family": "Operations", "manager_employee_id": "EMP-000047", "planned_peak_quarter": 2, "created_date": "2024-05-14"},
+{"team_id": "TEAM-0018", "team_name": "IT_Ops Team 1", "job_family": "IT_Ops", "manager_employee_id": "EMP-000289", "planned_peak_quarter": 2, "created_date": "2023-10-08"},
+{"team_id": "TEAM-0019", "team_name": "People_HR Team 1", "job_family": "People_HR", "manager_employee_id": "EMP-000288", "planned_peak_quarter": 3, "created_date": "2019-05-23"}
+]

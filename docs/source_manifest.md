@@ -14,7 +14,7 @@ confidential or personal information was collected.
 | Licences or terms of use | Not applicable (data is original and synthetic, released under this repository MIT licence) |
 | Transformations applied to external data | Not applicable |
 | Fields discarded from external data | Not applicable |
-| Schema inspiration | The entity list and rules come from the assignment brief only. [CONFIRM: no public HR dataset was consulted. If one was, list it here.] |
+| Schema inspiration | The entity list and rules come from the assignment brief only; no public HR dataset was consulted. |
 
 ## Provenance of the synthetic data
 

@@ -235,7 +235,7 @@ def test_injected_ground_truth_matches_changed_and_inserted_rows(injected_ds):
                     changed |= current_value != baseline_value
             assert changed, f"ground-truth row does not describe a change: {row}"
         else:
-            assert not row.field
+            assert pd.isna(row.field) or row.field == ""     # empty cell reads back as "" or NaN depending on pandas
             assert pd.isna(row.original_value)
             before = original_table.set_index(primary_key).loc[row.record_id]
             pd.testing.assert_series_equal(current, before, check_names=False, check_dtype=False)

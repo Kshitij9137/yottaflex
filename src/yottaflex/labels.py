@@ -29,5 +29,7 @@ def labels_for_cutoff(outcomes: pd.DataFrame, snapshots: pd.DataFrame, cutoff, h
     """Label per employee_id for any cutoff; eligibility = has a snapshot on the cutoff date."""
     have = set(snapshots.loc[snapshots["snapshot_date"] == pd.Timestamp(cutoff), "employee_id"])
     o = outcomes.set_index("employee_id")
-    eligible = o.index.to_series().isin(have)
+    # employed at the cutoff: has a snapshot there AND had not already left (a post-exit snapshot must not count)
+    employed = o["termination_date"].isna() | (o["termination_date"] > pd.Timestamp(cutoff))
+    eligible = o.index.to_series().isin(have) & employed
     return derive_label(o["final_status"], o["termination_date"], eligible, cutoff, horizon_end)
