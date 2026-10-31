@@ -121,7 +121,7 @@ Generated rules (`SCH-*`, `KEY-PK-*`, `FK:*`, `DUP-ROW:*`, `DUP-NATURAL:*`) are 
 | `DATE-SNAPSHOT-AFTER-HIRE` | Dates | snapshot_date is on or after hire_date |
 | `DATE-SURVEY-WINDOW` | Dates | survey_date is inside its snapshot quarter, after hire, not after the snapshot date |
 | `DATE-RECORDED-AFTER-EVENT` | Dates | recorded_at is not before the event it records |
-| `DATE-PROMOTION-EMPLOYMENT` | Dates | Role events fall during employment and inside the data window |
+| `DATE-PROMOTION-EMPLOYMENT` | Dates | Promotion events occur during employment and no later than the window end; pre-window events are permitted |
 | `DATE-ASSIGNMENT` | Dates | Assignments start at hire, never end before they start, are contiguous, and close on the termination date |
 | `DATE-BAND-VERSIONS` | Dates | Band versions per role are ordered, contiguous and the last one is open |
 | `DATE-OUTCOME-WINDOW` | Dates | termination_date is inside the window, after hire and after the first snapshot |

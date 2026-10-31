@@ -4,7 +4,8 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).resolve().parent
 OUTPUT_FILE = PROJECT_DIR / "project_code.txt"
 
-INCLUDE_EXTENSIONS = {".py", ".md", ".toml", ".ini", ".cfg"}
+INCLUDE_EXTENSIONS = {".py", ".md", ".toml", ".ini", ".cfg", ".yml", ".yaml"}
+INCLUDE_NAMES = {"LICENSE", "Makefile"}
 EXCLUDE_DIRS = {
     ".git",
     ".pytest_cache",
@@ -26,7 +27,7 @@ def included_files() -> list[Path]:
         if not path.is_file() or EXCLUDE_DIRS.intersection(relative_path.parts):
             continue
         if path.suffix.lower() not in INCLUDE_EXTENSIONS:
-            if path.name not in {"requirements.txt", "requirements-lock.txt"}:
+            if path.name not in {"requirements.txt", "requirements-lock.txt"} | INCLUDE_NAMES:
                 continue
         if ".min." in path.name or path == OUTPUT_FILE:
             continue

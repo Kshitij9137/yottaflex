@@ -383,7 +383,8 @@ def _(c):
     return bad, len(E) + len(P) + len(O) + len(V)
 
 
-@rule("DATE-PROMOTION-EMPLOYMENT", "Dates", "promotion_history", "Role events fall during employment and inside the data window")
+@rule("DATE-PROMOTION-EMPLOYMENT", "Dates", "promotion_history",
+      "Promotion events occur during employment and no later than the window end; pre-window events are permitted")
 def _(c):
     P = c.T["promotion_history"]
     hire = P["employee_id"].map(c.emp["hire_date"]); term = P["employee_id"].map(c.out["termination_date"])

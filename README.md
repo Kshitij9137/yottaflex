@@ -9,6 +9,12 @@ ground truth, validates the data with 171 rules, trains a transparent logistic-r
 temporal split and a leak audit, and proves that the same seed gives byte-identical output.
 All data is synthetic. No external data is used (`docs/source_manifest.md`).
 
+> **Fairness limitation — not for operational use.** Tenure-related and other job-related features
+> produce unequal selection rates across the reported groups and may act as proxies for protected
+> characteristics in real populations. This is a synthetic decision-support demonstration, not a
+> deployment-ready tool. Do not use it operationally without an appropriate fairness assessment,
+> human review, and legal oversight.
+
 ## Quick start
 
 Python 3.10 or newer. From the repository root:
@@ -36,7 +42,7 @@ On macOS/Linux, `make all` runs the same steps (see `Makefile`).
 ## Verify
 
 ```powershell
-python -m pytest                                                   # 126 tests, about two minutes
+python -m pytest                                                   # 127 tests, about two minutes
 python scripts/repro_check.py --n-employees 500 --label starter    # regenerate twice, compare SHA-256
 python scripts/repro_check.py --n-employees 10000 --label full --compare-committed data/full
 ```

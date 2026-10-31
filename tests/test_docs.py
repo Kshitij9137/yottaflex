@@ -35,6 +35,15 @@ def test_dependency_lockfile_is_portable_utf8_with_exact_pins():
     assert requirements and all("==" in requirement for requirement in requirements)
 
 
+def test_source_context_export_includes_license_makefile_and_ci():
+    spec = importlib.util.spec_from_file_location("export_code", ROOT / "export_code.py")
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    included = {p.relative_to(ROOT).as_posix() for p in module.included_files()}
+    assert {"LICENSE", "Makefile", ".github/workflows/tests.yml"} <= included
+
+
 def test_readme_commands_point_at_real_modules_and_files():
     text = (ROOT / "README.md").read_text(encoding="utf-8")
     for mod in set(re.findall(r"python -m (yottaflex[\w.]*)", text)):

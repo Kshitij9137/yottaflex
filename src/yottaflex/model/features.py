@@ -116,7 +116,13 @@ def features_at(P: pd.DataFrame, I: pd.DataFrame, cutoff, *, naive: bool = False
     F["workload_index"] = F["workload_index"].fillna(F["workload_index"].median())
     F["high_load_quarters_4q"] = high4.reindex(F.index).fillna(0).astype(float)
     F["nonpeak_overload_streak"] = streak.reindex(F.index).fillna(0.0)
-    F["planned_peak_now"] = w_last["planned_peak_flag"].reindex(F.index).fillna(False).astype(float)
+    F["planned_peak_now"] = (
+        w_last["planned_peak_flag"]
+        .reindex(F.index)
+        .astype("boolean")
+        .fillna(False)
+        .astype(float)
+    )
     F["months_since_last_promotion"] = base["months_since_last_promotion"].astype(float)
     F["stagnation_months"] = (F["months_since_last_promotion"] - STAGNATION_GRACE).clip(0, 24) * (base["level"] < 5)
     F["compa_ratio"] = base["compa_ratio"].astype(float)

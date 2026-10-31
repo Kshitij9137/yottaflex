@@ -120,6 +120,8 @@ This is the model-side counterpart to the validator's `unreviewed_individual_sco
 
 ## 7. Sensitive attributes, proxies and subgroup check
 
+> **Fairness warning:** the model produces substantially different selection rates across tenure groups. These job-related features may act as proxies for protected characteristics in real populations. This synthetic analysis cannot establish protected-group fairness; do not use the model operationally without an appropriate fairness assessment, human review and legal oversight.
+
 - No sensitive attribute exists in the data or the features (age, gender, ethnicity, caste, religion, nationality, disability, marital or family status, leave type, home location). A name audit confirms no feature column matches. Job family, employment type, team and level-independent identifiers are kept out of the model as well.
 - Tenure, months since promotion and level are job-related and explainable, but in real data they would correlate with age. They are treated as **proxy risks** and monitored below.
 
@@ -165,4 +167,3 @@ Spending capacity in proportion to each tenure band evens out who is reviewed at
 - **Leak audit scope.** It checks timestamps and feature provenance inside this dataset. A falsified `recorded_at` would need lineage controls outside it.
 - **Fairness scope.** The subgroup check uses job-related groups because no sensitive attribute exists. With real data the same table should be built on protected groups, under legal guidance.
 - **Single test period.** One test cutoff with 315 exits gives wide intervals (shown above); differences of a few points between models are not meaningful.
-
