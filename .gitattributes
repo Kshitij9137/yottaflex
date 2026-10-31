@@ -1,0 +1,6 @@
+# Keep generated data byte-identical on every OS so committed SHA-256 checksums stay valid.
+* text=auto eol=lf
+*.csv  -text
+*.json -text
+*.sql  -text
+*.md   text eol=lf
