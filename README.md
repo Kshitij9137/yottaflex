@@ -42,7 +42,7 @@ On macOS/Linux, `make all` runs the same steps (see `Makefile`).
 ## Verify
 
 ```powershell
-python -m pytest                                                   # 127 tests, about two minutes
+python -m pytest                                                   # 126 tests, about two minutes
 python scripts/repro_check.py --n-employees 500 --label starter    # regenerate twice, compare SHA-256
 python scripts/repro_check.py --n-employees 10000 --label full --compare-committed data/full
 ```
@@ -68,16 +68,28 @@ IDs follow the brief: `EMP-000001`, `SNAP-EMP-000001-2026Q1`, `SURV-2026-000001`
 ## Repository layout
 
 ```
-src/yottaflex/
-  config.py ids.py dates.py labels.py io.py   shared constants, ID helpers, the single label function, deterministic CSV writer
-  generate/    masters, simulate (risk rule + attrition), tables, anomalies, calibrate, params, rng, CLI
-  validate/    schema (machine-readable data dictionary), rules (171), evaluate (precision/recall), report, CLI
-  model/       features (as-of), dataset (temporal splits), train, metrics, explain, audit, report, CLI
-  export.py    JSON + SQL seed export with a load-and-verify check
-scripts/repro_check.py    the two-run reproducibility proof
-tests/                    generator, IDs, validator, model, export, CLI, docs hygiene
-docs/                     design and evidence documents (see below)
+.
+├── .github/workflows/    CI configuration
+├── data/                 reproducible starter/full synthetic datasets and exports
+├── docs/                 data dictionary, design decisions, reports, provenance
+├── prompts/              selected retained prompt records and index
+├── scripts/              reproducibility check
+├── src/yottaflex/
+│   ├── generate/         master data, histories, rules, and anomaly injection
+│   ├── validate/         schema, validation rules, evaluation, and reports
+│   ├── model/            as-of features, temporal evaluation, explanations, and audit
+│   ├── report/           export and model report helpers
+│   └── config.py, dates.py, export.py, ids.py, io.py, labels.py
+├── tests/                generator, validation, model, export, CLI, and docs tests
+├── LICENSE
+├── Makefile
+├── pyproject.toml
+└── requirements-lock.txt
 ```
+
+Generated datasets and model outputs stay under `data/`; validation, model, and
+reproducibility reports are kept under `docs/`. Prompt records are selected
+examples, not a complete conversation archive.
 
 ## Key decisions
 
