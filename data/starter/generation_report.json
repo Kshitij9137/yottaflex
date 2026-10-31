@@ -1,0 +1,46 @@
+{
+  "b0": -4.890625,
+  "generator_command": "python -m yottaflex.generate --n-employees 1000 --seed 20261022 --out <dir>",
+  "ground_truth_counts": {
+    "benign_high_workload/False": 30,
+    "benign_internal_transfer/False": 30,
+    "benign_missing_survey/False": 30,
+    "future_information_leak/True": 18,
+    "label_termination_mismatch/True": 5,
+    "missing_survey_as_negative/True": 38,
+    "unreviewed_individual_score/True": 4
+  },
+  "involuntary_attrition_rate": 0.011,
+  "n_employees": 1000,
+  "row_counts": {
+    "attrition_outcome": 1000,
+    "compensation_band": 105,
+    "employee": 1000,
+    "employee_team_assignment": 1065,
+    "engagement_survey": 7064,
+    "intervention": 63,
+    "promotion_history": 847,
+    "role": 35,
+    "team": 40,
+    "tenure_snapshot": 7064,
+    "workload_snapshot": 7064
+  },
+  "rule_score_auc_next_quarter": 0.7565,
+  "seed": 20261022,
+  "sha256": {
+    "attrition_outcome.csv": "6e28dc22ba65b1de8f128a25e6400122e9648b8428f98fcae69f0983dc723cfb",
+    "compensation_band.csv": "bab23a6c737a0e12014e14fc80a4ba7b3cf2697c1f0f2d57b14f6036534c05f1",
+    "employee.csv": "91f4833961cf9843b70a2867cab90e8d73ba2285b73f8c7b5ad6602b4a2af8e2",
+    "employee_team_assignment.csv": "d6c00384bdb86ca8b7edb43ba25c731b65349a2027a723642a01cb5fa85ee3cd",
+    "engagement_survey.csv": "fbb17ef989190ad46f626a2075f218a9affa5560cce666d35589677b1f5541b0",
+    "ground_truth.csv": "5c2482152ea20ce698da600288945efa121e3afcefbf25e7cb3a42bde2816fee",
+    "ground_truth.json": "9360757ed975f9d0e8b309a0808a8611e3780dc06f51f1d27d8823504a21f3b9",
+    "intervention.csv": "d33dcce1a983d169ff0e5853447aac90ba53686edbaa4ebc7a570c5cfe69d2bc",
+    "promotion_history.csv": "a65814ae9ca4777fc80cf7afb37329c5a84c852432e2198b10c2142c8f8c3e05",
+    "role.csv": "61d01fac6550b0f1c404d9a1d2e4f10a666644d66ab92707be257e96b7e85831",
+    "team.csv": "9279f203da8e4d968b666f24010614073fb1a1f2ba2a548f061e30bc4a024210",
+    "tenure_snapshot.csv": "5ec3eb136c300349fd654f3ed844026a3caad91fbdabdf868ad3a4bebbbf322d",
+    "workload_snapshot.csv": "4a9c5f2ba496e9b3f45bc0456f115b0e28ccd3481f0fc0cf1abfd543bd817202"
+  },
+  "voluntary_attrition_rate": 0.1
+}

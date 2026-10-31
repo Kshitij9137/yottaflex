@@ -240,6 +240,21 @@ Rules the generator enforces and the tests check:
 - **L10** People_HR is excluded from lateral moves so that review stays with a real HR partner.
 - **L11** Salary reconciliation is bounds-based (merit is not stored as its own event).
 
+## 13. Model and evaluation decisions (Phase 5)
+
+- **Purpose:** a ranked priority list for supportive conversations, sized to review capacity (top 5% of scorable employees). Never an employment decision.
+- **Model:** standardised logistic regression with 21 plain features. Gradient boosting is trained only as a comparison and is not used for output, because it is not explainable and was not better.
+- **Scorable population at cutoff C:** employed on C with a snapshot recorded by the end of C. Label = voluntary exit within 6 months, recomputed from termination facts. Involuntary exits in the horizon are dropped (competing event).
+- **As-of rule:** a feature may use a row only if `snapshot_date <= C` and `recorded_at <= C 23:59:59Z`, checked per component (tenure, survey, workload). Availability is checked, not just the date.
+- **Missing data:** a skipped survey is missing, never a score (even if a stored score exists). "No survey yet" becomes a neutral 60 with a flag. Skip counts are included only to show they carry no negative signal.
+- **Temporal protocol:** C-train 2025-03-31, C-validation 2025-09-30, C-test 2026-03-31. Regularisation chosen on validation PR-AUC, then refit on train + validation and tested once.
+- **Metrics:** PR-AUC and ROC-AUC with bootstrap 95% intervals, precision, recall and lift at top 1/5/10%, calibration deciles, Brier and ECE. Baselines: random, tenure only, engagement only, gradient boosting, and the transparent generator rule as a reference ceiling.
+- **Explanations:** per-employee `coefficient x standardised value`, summed into 7 plain themes; top 3 positive themes with the employee's real numbers. Survey participation and recent support are never shown as risk reasons. Planned peaks, transfers and new-joiner status appear as context notes.
+- **Output contract (enforced in code):** `human_review_required = True`, `automated_action_allowed = False`, assigned HR partner and manager, `Pending_Review` with an empty reviewer, non-empty explanation, the framing note, and no decision-style wording. `assert_supportive_framing` raises otherwise.
+- **Leak audit:** provenance (latest `recorded_at` and date among rows used), forbidden and sensitive column names, univariate AUC >= 0.90, split rule, stored vs recomputed labels. The leak ladder switches defences off one at a time.
+- **Proxy and subgroup check:** no sensitive attribute exists. Job-related groups (job family, level, tenure band, employment type) are monitored with a 0.8-1.25 flag-rate screen. Finding: tenure bands are flagged unevenly. A proportional-by-band selection is reported as a measured trade-off; the default stays global ranking until HR and legal decide.
+- **Known tension:** the validator's `Intervention.signal_top_factors` uses the six transparent-rule factor codes, while model output uses seven plain themes. They are separate artefacts (historical interventions vs the new priority list).
+
 ## 13. Change log
 
 | Date | Change | Reason |
@@ -247,6 +262,7 @@ Rules the generator enforces and the tests check:
 | 2026-10-30 | Window set to 2024Q4-2026Q3 (was 2025Q1-2026Q4 in the draft plan) | Keep every record in the past |
 | 2026-10-30 | Phase 2 tuning: stagnation grace 36 months (was 24), planned-peak boost 4-10 h (was 7-14), signal top 1.5% (was 3%), workload index weights 0.55/0.30/0.15 | First 10k run: 49% of snapshots were stagnating and 80% of peaks looked like overload, which made the benign case the norm |
 | 2026-10-30 | Phase 3: label mismatch has three subtypes, unreviewed score has three, and post-exit snapshots insert parent and child rows together; random stream `anomalies` appended (existing streams unchanged) | Keeps joins valid and makes each anomaly independently detectable |
+| 2026-10-30 | Phase 5: `labels_for_cutoff` now requires the employee to still be employed at the cutoff; stratified-by-tenure selection reported as an option instead of changing the default | A post-exit snapshot could otherwise put an earlier leaver into the scoring population; the subgroup check found long-tenure staff over-flagged (1.96x) |
 | 2026-10-30 | Phase 4: `DUP-ROW` is not applied to Employee; late-recorded leaks skip employees with interventions; post-exit snapshots derive `months_since_last_promotion` from Promotion events only | The validator found a false positive on the clean baseline (15 coincidental identical employee rows), a stale derived value, and an accidental second defect on an inserted row |
 | 2026-10-30 | `recorded_at` is end-of-day on the snapshot date, not +1-10 days | Otherwise the snapshot for a cutoff quarter would itself be unavailable at the cutoff |
 | 2026-10-30 | AttritionOutcome stores termination facts plus the test-cutoff label; earlier labels recomputed | Matches the one-per-employee ID `OUT-<employee-id>-2026` and keeps labels derived |

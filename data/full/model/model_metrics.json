@@ -1,0 +1,684 @@
+{
+  "ablation": {
+    "full": {
+      "lift_at_5pct": 4.0621,
+      "pr_auc": 0.0939,
+      "recall_at_5pct": 0.2032,
+      "roc_auc": 0.7125
+    },
+    "metrics": {
+      "lift_at_5pct": 2.9197,
+      "pr_auc": 0.0783,
+      "recall_at_5pct": 0.146,
+      "roc_auc": 0.6803
+    },
+    "removed": [
+      "tenure_months",
+      "new_joiner",
+      "months_in_current_team",
+      "level",
+      "months_since_last_promotion",
+      "stagnation_months"
+    ]
+  },
+  "audit": {
+    "labels": {
+      "employees": 10000,
+      "stored_vs_recomputed_mismatches": 55
+    },
+    "production": {
+      "forbidden": {
+        "forbidden_columns": [],
+        "ok": true,
+        "sensitive_name_matches": []
+      },
+      "passed": true,
+      "provenance": {
+        "dated_after_cutoff": 0,
+        "recorded_after_cutoff": 0,
+        "rows": 8937,
+        "violations": 0
+      },
+      "univariate": {
+        "flagged": {},
+        "ok": true,
+        "strongest": [
+          [
+            "last_engagement",
+            0.674
+          ],
+          [
+            "engagement_mean_4q",
+            0.6642
+          ],
+          [
+            "low_engagement_gap",
+            0.6127
+          ]
+        ],
+        "threshold": 0.9
+      }
+    },
+    "split": {
+      "ok": true,
+      "rule": "each horizon ends on or before the next cutoff, so training labels are observed before the test cutoff"
+    }
+  },
+  "baselines": {
+    "Engagement score only (lower = higher)": {
+      "lift_at_5pct": 2.7292,
+      "pr_auc": 0.0644,
+      "recall_at_5pct": 0.1365,
+      "roc_auc": 0.674
+    },
+    "Gradient boosting (not interpretable)": {
+      "lift_at_5pct": 2.7927,
+      "pr_auc": 0.0808,
+      "recall_at_5pct": 0.1397,
+      "roc_auc": 0.6995
+    },
+    "Logistic regression (this model)": {
+      "lift_at_5pct": 4.0621,
+      "pr_auc": 0.0939,
+      "recall_at_5pct": 0.2032,
+      "roc_auc": 0.7125
+    },
+    "Random ranking": {
+      "lift_at_5pct": 1.0,
+      "pr_auc": 0.035246727089627394,
+      "recall_at_5pct": 0.05,
+      "roc_auc": 0.5
+    },
+    "Tenure only (shorter = higher)": {
+      "lift_at_5pct": 1.2059,
+      "pr_auc": 0.0329,
+      "recall_at_5pct": 0.0603,
+      "roc_auc": 0.4537
+    },
+    "Transparent rule, reference ceiling": {
+      "lift_at_5pct": 3.8717,
+      "pr_auc": 0.0975,
+      "recall_at_5pct": 0.1937,
+      "roc_auc": 0.7217
+    }
+  },
+  "calibration": [
+    {
+      "bin": 0,
+      "mean_predicted": 0.010987,
+      "n": 894,
+      "observed_rate": 0.010067
+    },
+    {
+      "bin": 1,
+      "mean_predicted": 0.014575,
+      "n": 894,
+      "observed_rate": 0.012304
+    },
+    {
+      "bin": 2,
+      "mean_predicted": 0.017106,
+      "n": 893,
+      "observed_rate": 0.016797
+    },
+    {
+      "bin": 3,
+      "mean_predicted": 0.019881,
+      "n": 894,
+      "observed_rate": 0.024609
+    },
+    {
+      "bin": 4,
+      "mean_predicted": 0.022869,
+      "n": 894,
+      "observed_rate": 0.019016
+    },
+    {
+      "bin": 5,
+      "mean_predicted": 0.026806,
+      "n": 893,
+      "observed_rate": 0.021277
+    },
+    {
+      "bin": 6,
+      "mean_predicted": 0.032141,
+      "n": 894,
+      "observed_rate": 0.033557
+    },
+    {
+      "bin": 7,
+      "mean_predicted": 0.040318,
+      "n": 893,
+      "observed_rate": 0.034714
+    },
+    {
+      "bin": 8,
+      "mean_predicted": 0.054191,
+      "n": 894,
+      "observed_rate": 0.064877
+    },
+    {
+      "bin": 9,
+      "mean_predicted": 0.101759,
+      "n": 894,
+      "observed_rate": 0.115213
+    }
+  ],
+  "coefficients": [
+    {
+      "coefficient": 0.236205,
+      "feature": "stagnation_months",
+      "odds_ratio_per_sd": 1.266434
+    },
+    {
+      "coefficient": 0.221226,
+      "feature": "nonpeak_overload_streak",
+      "odds_ratio_per_sd": 1.247605
+    },
+    {
+      "coefficient": -0.200561,
+      "feature": "last_engagement",
+      "odds_ratio_per_sd": 0.818271
+    },
+    {
+      "coefficient": 0.197149,
+      "feature": "pay_gap",
+      "odds_ratio_per_sd": 1.217926
+    },
+    {
+      "coefficient": -0.151199,
+      "feature": "engagement_mean_4q",
+      "odds_ratio_per_sd": 0.859677
+    },
+    {
+      "coefficient": 0.119567,
+      "feature": "months_since_last_promotion",
+      "odds_ratio_per_sd": 1.127009
+    },
+    {
+      "coefficient": 0.106461,
+      "feature": "new_joiner",
+      "odds_ratio_per_sd": 1.112334
+    },
+    {
+      "coefficient": -0.082819,
+      "feature": "surveys_skipped_4q",
+      "odds_ratio_per_sd": 0.920518
+    },
+    {
+      "coefficient": -0.077853,
+      "feature": "workload_index",
+      "odds_ratio_per_sd": 0.9251
+    },
+    {
+      "coefficient": 0.068189,
+      "feature": "level",
+      "odds_ratio_per_sd": 1.070568
+    },
+    {
+      "coefficient": 0.065381,
+      "feature": "low_engagement_gap",
+      "odds_ratio_per_sd": 1.067565
+    },
+    {
+      "coefficient": 0.050085,
+      "feature": "recent_promotion",
+      "odds_ratio_per_sd": 1.051361
+    },
+    {
+      "coefficient": 0.048979,
+      "feature": "engagement_drop",
+      "odds_ratio_per_sd": 1.050198
+    },
+    {
+      "coefficient": -0.03584,
+      "feature": "high_load_quarters_4q",
+      "odds_ratio_per_sd": 0.964795
+    },
+    {
+      "coefficient": -0.032051,
+      "feature": "compa_ratio",
+      "odds_ratio_per_sd": 0.968457
+    },
+    {
+      "coefficient": 0.026084,
+      "feature": "tenure_months",
+      "odds_ratio_per_sd": 1.026427
+    },
+    {
+      "coefficient": -0.025575,
+      "feature": "months_in_current_team",
+      "odds_ratio_per_sd": 0.974749
+    },
+    {
+      "coefficient": 0.022001,
+      "feature": "never_responded",
+      "odds_ratio_per_sd": 1.022244
+    },
+    {
+      "coefficient": 0.020819,
+      "feature": "planned_peak_now",
+      "odds_ratio_per_sd": 1.021037
+    },
+    {
+      "coefficient": -0.012454,
+      "feature": "recent_intervention",
+      "odds_ratio_per_sd": 0.987623
+    },
+    {
+      "coefficient": -0.010714,
+      "feature": "recent_transfer",
+      "odds_ratio_per_sd": 0.989343
+    }
+  ],
+  "design": {
+    "C": 0.01,
+    "capacity_fraction": 0.05,
+    "features": [
+      "last_engagement",
+      "engagement_drop",
+      "engagement_mean_4q",
+      "low_engagement_gap",
+      "never_responded",
+      "surveys_skipped_4q",
+      "workload_index",
+      "high_load_quarters_4q",
+      "nonpeak_overload_streak",
+      "planned_peak_now",
+      "months_since_last_promotion",
+      "stagnation_months",
+      "compa_ratio",
+      "pay_gap",
+      "tenure_months",
+      "new_joiner",
+      "months_in_current_team",
+      "level",
+      "recent_transfer",
+      "recent_promotion",
+      "recent_intervention"
+    ],
+    "validation_pr_auc_by_C": {
+      "0.01": 0.09193639837691477,
+      "0.1": 0.0912790163374452,
+      "1.0": 0.09169126391379667
+    }
+  },
+  "ladder": [
+    {
+      "audit": "PASS",
+      "flagged_features": "",
+      "lift_at_5pct": 3.9964,
+      "pipeline": "Reference: same pipeline on the clean baseline (no injected anomalies)",
+      "pr_auc": 0.0949,
+      "provenance_violations": 0,
+      "recall_at_5pct": 0.2,
+      "roc_auc": 0.7127
+    },
+    {
+      "audit": "PASS",
+      "flagged_features": "",
+      "lift_at_5pct": 4.0621,
+      "pipeline": "Production: as-of, recorded_at enforced, skipped = null, recomputed labels",
+      "pr_auc": 0.0939,
+      "provenance_violations": 0,
+      "recall_at_5pct": 0.2032,
+      "roc_auc": 0.7125
+    },
+    {
+      "affected_employees": 25,
+      "audit": "FAIL",
+      "flagged_features": "",
+      "lift_at_5pct": 4.3795,
+      "mean_percentile_shift": 0.2078,
+      "pipeline": "Ignore recorded_at (date-only as-of)",
+      "pr_auc": 0.1253,
+      "provenance_violations": 25,
+      "recall_at_5pct": 0.219,
+      "roc_auc": 0.7272
+    },
+    {
+      "audit": "PASS (not a leak)",
+      "flagged_features": "caught by validator rule SURV-SKIPPED-HAS-SCORE (377 rows)",
+      "lift_at_5pct": 3.5544,
+      "pipeline": "Skipped survey scored as its stored value (no sanitising)",
+      "pr_auc": 0.0896,
+      "provenance_violations": 0,
+      "recall_at_5pct": 0.1778,
+      "roc_auc": 0.7067
+    },
+    {
+      "audit": "FAIL",
+      "flagged_features": "",
+      "lift_at_5pct": 2.0945,
+      "pipeline": "LEAK: latest-value join over all rows",
+      "pr_auc": 0.0838,
+      "provenance_violations": 8797,
+      "recall_at_5pct": 0.1048,
+      "roc_auc": 0.7006
+    },
+    {
+      "audit": "FAIL",
+      "flagged_features": "future_snapshots",
+      "lift_at_5pct": 19.6125,
+      "pipeline": "LEAK: latest-value join + count of later snapshots",
+      "pr_auc": 0.9534,
+      "provenance_violations": 8797,
+      "recall_at_5pct": 0.981,
+      "roc_auc": 0.9896
+    },
+    {
+      "audit": "FAIL",
+      "flagged_features": "55 labels disagree with termination facts",
+      "lift_at_5pct": 3.8061,
+      "pipeline": "Use the stored test label instead of recomputing it",
+      "pr_auc": 0.0861,
+      "provenance_violations": 0,
+      "recall_at_5pct": 0.1905,
+      "roc_auc": 0.695
+    }
+  ],
+  "stratified": {
+    "Global top 5% by score (default)": {
+      "flagged": 447,
+      "lift": 4.062128475551294,
+      "max_band_flag_ratio": 1.9601263324121596,
+      "min_band_flag_ratio": 0.26404673334681344,
+      "precision": 0.14317673378076062,
+      "recall": 0.20317460317460317
+    },
+    "Top 5% within each tenure band": {
+      "flagged": 446,
+      "lift": 3.6259449071108265,
+      "max_band_flag_ratio": 1.001194080250263,
+      "min_band_flag_ratio": 0.9962929117835474,
+      "precision": 0.12780269058295965,
+      "recall": 0.18095238095238095
+    }
+  },
+  "subgroups": [
+    {
+      "base_rate": 0.034304,
+      "base_rate_ratio": 0.973259,
+      "flag_rate": 0.048544,
+      "flag_ratio": 0.970548,
+      "group": "job_family",
+      "monitor": false,
+      "n": 1545,
+      "precision_of_flagged": 0.133333,
+      "recall_in_group": 0.188679,
+      "value": "Customer_Support"
+    },
+    {
+      "base_rate": 0.033516,
+      "base_rate_ratio": 0.950895,
+      "flag_rate": 0.048985,
+      "flag_ratio": 0.979368,
+      "group": "job_family",
+      "monitor": false,
+      "n": 3103,
+      "precision_of_flagged": 0.151316,
+      "recall_in_group": 0.221154,
+      "value": "Engineering"
+    },
+    {
+      "base_rate": 0.036129,
+      "base_rate_ratio": 1.025032,
+      "flag_rate": 0.064516,
+      "flag_ratio": 1.28989,
+      "group": "job_family",
+      "monitor": true,
+      "n": 775,
+      "precision_of_flagged": 0.12,
+      "recall_in_group": 0.214286,
+      "value": "IT_Ops"
+    },
+    {
+      "base_rate": 0.038797,
+      "base_rate_ratio": 1.100734,
+      "flag_rate": 0.049467,
+      "flag_ratio": 0.988999,
+      "group": "job_family",
+      "monitor": false,
+      "n": 1031,
+      "precision_of_flagged": 0.215686,
+      "recall_in_group": 0.275,
+      "value": "Operations"
+    },
+    {
+      "base_rate": 0.033113,
+      "base_rate_ratio": 0.939451,
+      "flag_rate": 0.041943,
+      "flag_ratio": 0.838571,
+      "group": "job_family",
+      "monitor": false,
+      "n": 453,
+      "precision_of_flagged": 0.105263,
+      "recall_in_group": 0.133333,
+      "value": "People_HR"
+    },
+    {
+      "base_rate": 0.04065,
+      "base_rate_ratio": 1.15331,
+      "flag_rate": 0.04607,
+      "flag_ratio": 0.9211,
+      "group": "job_family",
+      "monitor": false,
+      "n": 738,
+      "precision_of_flagged": 0.176471,
+      "recall_in_group": 0.2,
+      "value": "Product"
+    },
+    {
+      "base_rate": 0.03483,
+      "base_rate_ratio": 0.988169,
+      "flag_rate": 0.051084,
+      "flag_ratio": 1.021329,
+      "group": "job_family",
+      "monitor": false,
+      "n": 1292,
+      "precision_of_flagged": 0.090909,
+      "recall_in_group": 0.133333,
+      "value": "Sales"
+    },
+    {
+      "base_rate": 0.037795,
+      "base_rate_ratio": 1.072306,
+      "flag_rate": 0.060367,
+      "flag_ratio": 1.206944,
+      "group": "level",
+      "monitor": false,
+      "n": 1905,
+      "precision_of_flagged": 0.147826,
+      "recall_in_group": 0.236111,
+      "value": "L1"
+    },
+    {
+      "base_rate": 0.038976,
+      "base_rate_ratio": 1.105803,
+      "flag_rate": 0.050057,
+      "flag_ratio": 1.00081,
+      "group": "level",
+      "monitor": false,
+      "n": 2617,
+      "precision_of_flagged": 0.152672,
+      "recall_in_group": 0.196078,
+      "value": "L2"
+    },
+    {
+      "base_rate": 0.035255,
+      "base_rate_ratio": 1.000231,
+      "flag_rate": 0.050024,
+      "flag_ratio": 1.000141,
+      "group": "level",
+      "monitor": false,
+      "n": 2099,
+      "precision_of_flagged": 0.133333,
+      "recall_in_group": 0.189189,
+      "value": "L3"
+    },
+    {
+      "base_rate": 0.033594,
+      "base_rate_ratio": 0.953103,
+      "flag_rate": 0.051562,
+      "flag_ratio": 1.030904,
+      "group": "level",
+      "monitor": false,
+      "n": 1280,
+      "precision_of_flagged": 0.106061,
+      "recall_in_group": 0.162791,
+      "value": "L4"
+    },
+    {
+      "base_rate": 0.023166,
+      "base_rate_ratio": 0.657253,
+      "flag_rate": 0.028958,
+      "flag_ratio": 0.578956,
+      "group": "level",
+      "monitor": true,
+      "n": 1036,
+      "precision_of_flagged": 0.2,
+      "recall_in_group": 0.25,
+      "value": "L5"
+    },
+    {
+      "base_rate": 0.021874,
+      "base_rate_ratio": 0.620588,
+      "flag_rate": 0.013207,
+      "flag_ratio": 0.264047,
+      "group": "tenure_band",
+      "monitor": true,
+      "n": 2423,
+      "precision_of_flagged": 0.09375,
+      "recall_in_group": 0.056604,
+      "value": "1-3 years"
+    },
+    {
+      "base_rate": 0.04144,
+      "base_rate_ratio": 1.175704,
+      "flag_rate": 0.060147,
+      "flag_ratio": 1.202533,
+      "group": "tenure_band",
+      "monitor": false,
+      "n": 4223,
+      "precision_of_flagged": 0.153543,
+      "recall_in_group": 0.222857,
+      "value": "3-7 years"
+    },
+    {
+      "base_rate": 0.036415,
+      "base_rate_ratio": 1.033133,
+      "flag_rate": 0.098039,
+      "flag_ratio": 1.960126,
+      "group": "tenure_band",
+      "monitor": true,
+      "n": 1428,
+      "precision_of_flagged": 0.135714,
+      "recall_in_group": 0.365385,
+      "value": "7+ years"
+    },
+    {
+      "base_rate": 0.040556,
+      "base_rate_ratio": 1.150637,
+      "flag_rate": 0.024334,
+      "flag_ratio": 0.486511,
+      "group": "tenure_band",
+      "monitor": true,
+      "n": 863,
+      "precision_of_flagged": 0.142857,
+      "recall_in_group": 0.085714,
+      "value": "<1 year"
+    },
+    {
+      "base_rate": 0.029748,
+      "base_rate_ratio": 0.844001,
+      "flag_rate": 0.052632,
+      "flag_ratio": 1.052278,
+      "group": "employment_type",
+      "monitor": false,
+      "n": 874,
+      "precision_of_flagged": 0.23913,
+      "recall_in_group": 0.423077,
+      "value": "Fixed_Term"
+    },
+    {
+      "base_rate": 0.035843,
+      "base_rate_ratio": 1.01691,
+      "flag_rate": 0.049733,
+      "flag_ratio": 0.994333,
+      "group": "employment_type",
+      "monitor": false,
+      "n": 8063,
+      "precision_of_flagged": 0.13217,
+      "recall_in_group": 0.183391,
+      "value": "Full_Time"
+    }
+  ],
+  "temporal": {
+    "test": {
+      "base_rate": 0.035246727089627394,
+      "cutoff": "2026-03-31",
+      "horizon_end": "2026-09-30",
+      "lift_at_5pct": 4.062128475551294,
+      "n": 8937,
+      "positives": 315,
+      "pr_auc": 0.09385338339554239,
+      "recall_at_5pct": 0.20317460317460317,
+      "roc_auc": 0.7125032677572691
+    },
+    "train": {
+      "base_rate": 0.03236171677759927,
+      "cutoff": "2025-03-31",
+      "horizon_end": "2025-09-30",
+      "lift_at_5pct": 3.6854056867720737,
+      "n": 8714,
+      "positives": 282,
+      "pr_auc": 0.08664563291812383,
+      "recall_at_5pct": 0.18439716312056736,
+      "roc_auc": 0.7020612122680232
+    },
+    "validation": {
+      "base_rate": 0.03274416496714253,
+      "cutoff": "2025-09-30",
+      "horizon_end": "2026-03-31",
+      "lift_at_5pct": 4.432078713838477,
+      "n": 8826,
+      "positives": 289,
+      "pr_auc": 0.09193639837691477,
+      "recall_at_5pct": 0.22145328719723184,
+      "roc_auc": 0.7080414868232846
+    }
+  },
+  "test": {
+    "base_rate": 0.035246727089627394,
+    "brier": 0.03311386103783538,
+    "ece": 0.0048771063103510825,
+    "lift_at_10pct": 3.268744007670182,
+    "lift_at_1pct": 5.1004815409309785,
+    "lift_at_5pct": 4.062128475551294,
+    "mean_predicted": 0.03406531721957294,
+    "n": 8937,
+    "positives": 315,
+    "pr_auc": 0.09385338339554239,
+    "precision_at_10pct": 0.11521252796420582,
+    "precision_at_1pct": 0.1797752808988764,
+    "precision_at_5pct": 0.14317673378076062,
+    "recall_at_10pct": 0.326984126984127,
+    "recall_at_1pct": 0.050793650793650794,
+    "recall_at_5pct": 0.20317460317460317,
+    "roc_auc": 0.7125032677572691
+  },
+  "test_ci": {
+    "pr_auc": [
+      0.078995657382043,
+      0.11588006933937159
+    ],
+    "recall_at_5pct": [
+      0.15857059476696184,
+      0.24309567901234566
+    ],
+    "roc_auc": [
+      0.6851066824879484,
+      0.7395675338562023
+    ]
+  }
+}
