@@ -158,7 +158,7 @@ All coefficients and thresholds live in `src/yottaflex/generate/params.py`. The 
 **Expected behaviour (sanity check, not a tuning target):** with frailty noise, a good model should reach roughly PR-AUC 2-4x the base rate and ROC-AUC about 0.70-0.80. Near-perfect scores would signal a leak.
 
 **Interventions:**
-- Trigger rules at each quarter-end (snapshots 2024Q4-2026Q2, so every proposal falls inside the window): (a) Signal_Flagged when the transparent rule score (formula above without `eps_i`) is in the top 1.5% for that quarter, taken up with probability 0.6 because capacity is limited. An employee has at most one intervention per 3 quarters; (b) Manager_Initiated when engagement drops >= 20 points, probability 0.25; (c) HR_Initiated at random, probability 0.2%.
+- Trigger rules at each quarter-end (snapshots 2024Q4-2026Q2, so every proposal falls inside the window): (a) Signal_Flagged when the transparent rule score (formula above without `eps_i`) is in the top 1.5% for that quarter, taken up with probability 0.6 because capacity is limited. An employee has at most one intervention per 3 quarters; (b) Manager_Initiated when engagement drops >= 20 points, probability 0.20; (c) HR_Initiated at random, probability 0.05%.
 - Type is chosen by the dominant factor: engagement -> Stay_Conversation, overload -> Workload_Rebalance, stagnation -> Career_Path_Discussion, pay_gap -> Compensation_Review.
 - Review: Signal_Flagged goes to an HR partner; 90% Approved, 10% Declined. Only conducted interventions change risk.
 - Effect (modest, only when conducted): hazard multiplier 0.90 Stay_Conversation, 0.80 Workload_Rebalance (only if overload_eff > 0), 0.80 Career_Path_Discussion (only if stagnation > 0), 0.75 Compensation_Review (only if pay_gap > 0); otherwise 1.0. Applies to the next 2 quarters.
@@ -211,7 +211,7 @@ Rules the generator enforces and the tests check:
 
 **Never generated or used:** age, date of birth, gender, ethnicity, caste, religion, nationality, disability or health status, marital or family status, leave type (maternity, medical), home location or PIN code, name, photo.
 
-**Proxy review:** tenure and compa_ratio could correlate with protected traits in real data. They are job-related and explainable, so they are allowed, but Phase 5 documents this and tests score distribution across job family and level. Planned: no feature may be a protected attribute, and no feature may predict one with unusual strength.
+**Proxy review:** no protected attribute is generated or used. Job-related variables such as tenure, level, promotion history, and pay position may correlate with protected traits in real populations; they are therefore treated as potential proxies, not as proof that proxy risk is absent. The model report measures score and selection-rate differences across available job-related groups. Because the synthetic data has no protected-group labels, it cannot establish fairness across protected groups or test whether features predict protected status. A real deployment would require an appropriate, lawful fairness assessment and human review.
 
 **Allowed features (as-of cutoff):** tenure_months, months_since_last_promotion, months_in_current_team, compa_ratio, level, job_family, last and previous engagement score, engagement trend, survey response history (counts only), workload index trend, non-peak overload quarters, recent transfer or promotion flags, conducted interventions up to the cutoff.
 
@@ -255,7 +255,7 @@ Rules the generator enforces and the tests check:
 - **Proxy and subgroup check:** no sensitive attribute exists. Job-related groups (job family, level, tenure band, employment type) are monitored with a 0.8-1.25 flag-rate screen. Finding: tenure bands are flagged unevenly. A proportional-by-band selection is reported as a measured trade-off; the default stays global ranking until HR and legal decide.
 - **Known tension:** the validator's `Intervention.signal_top_factors` uses the six transparent-rule factor codes, while model output uses seven plain themes. They are separate artefacts (historical interventions vs the new priority list).
 
-## 13. Change log
+## 14. Change log
 
 | Date | Change | Reason |
 |---|---|---|

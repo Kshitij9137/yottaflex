@@ -58,6 +58,12 @@ def diff(a: dict, b: dict) -> list[str]:
     return out
 
 
+def diff_expected_files(expected: dict, actual: dict) -> list[str]:
+    """Compare every expected file while allowing unrelated files in the target directory."""
+    actual_expected = {name: actual[name] for name in expected if name in actual}
+    return diff(expected, actual_expected)
+
+
 def run(*args: str) -> None:
     subprocess.run([sys.executable, "-m", *args], check=True, stdout=subprocess.DEVNULL)
 
@@ -92,7 +98,7 @@ def main() -> int:
     committed = None
     if a.compare_committed:
         cm = snapshot(a.compare_committed)
-        committed = diff({k: v for k, v in A.items() if k in cm}, {k: v for k, v in cm.items() if k in A})
+        committed = diff_expected_files(A, cm)
 
     result = {
         "label": a.label, "seed": a.seed, "n_employees": a.n_employees,

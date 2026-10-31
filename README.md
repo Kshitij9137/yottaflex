@@ -36,7 +36,7 @@ On macOS/Linux, `make all` runs the same steps (see `Makefile`).
 ## Verify
 
 ```powershell
-python -m pytest                                                   # 120+ tests, about a minute
+python -m pytest                                                   # 126 tests, about two minutes
 python scripts/repro_check.py --n-employees 500 --label starter    # regenerate twice, compare SHA-256
 python scripts/repro_check.py --n-employees 10000 --label full --compare-committed data/full
 ```
@@ -103,7 +103,7 @@ Detailed tables are in [docs/validation_summary.md](docs/validation_summary.md) 
 | Are the four anomaly detectors accurate? | Precision 1.00 and recall 1.00 for all four types against the ground truth, 0 of 900 decoys flagged |
 | Does the model rank future leavers? | Test ROC-AUC 0.713, PR-AUC 0.094 against a 0.035 base rate. Reviewing the top 5% finds about 20% of later voluntary leavers (4.1x lift) |
 | Does a complex model help? | No. Gradient boosting does not beat the explainable model |
-| Are leaks caught? | Yes. A 25-row `recorded_at` leak lifts PR-AUC from 0.094 to 0.125 and fails the audit; a blatant leak reaches 0.95 and is named |
+| Are leaks caught? | Yes. A 25-row `recorded_at` leak lifts PR-AUC from 0.094 to 0.126 and fails the audit; a blatant leak reaches 0.983 and is named |
 | Is the output reproducible? | Same seed gives identical SHA-256 for every file; a different seed differs |
 
 ## Assumptions and trade-offs
@@ -129,7 +129,7 @@ The complete list (L1 to L11) is in section 12 of [docs/design_decisions.md](doc
 
 ## AI usage
 
-See [docs/ai_usage.md](docs/ai_usage.md). The full conversations are saved in `prompts/`.
+See [docs/ai_usage.md](docs/ai_usage.md) for the AI-use disclosure and the status of prompt-history records.
 
 ## Licence
 

@@ -30,6 +30,8 @@ confidential or personal information was collected.
 
 ## Sensitive data
 
-No sensitive attributes or proxies are generated: age, gender, ethnicity, religion, caste, nationality,
+No protected attributes are generated: age, gender, ethnicity, religion, caste, nationality,
 disability or health, family status, leave type, location or PIN code, and names are excluded by design
-(see `docs/design_decisions.md`, section 10). The model audit checks this again.
+(see `docs/design_decisions.md`, section 10). Some job-related variables used by the model (including
+tenure and level) could act as proxies in real populations. Their subgroup effects are reported; this
+synthetic dataset has no protected-group labels and cannot establish protected-group fairness.

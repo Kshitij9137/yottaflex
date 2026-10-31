@@ -27,6 +27,14 @@ def test_source_manifest_states_no_external_data():
     assert "No external data was used" in (ROOT / "docs/source_manifest.md").read_text(encoding="utf-8")
 
 
+def test_dependency_lockfile_is_portable_utf8_with_exact_pins():
+    raw = (ROOT / "requirements-lock.txt").read_bytes()
+    text = raw.decode("utf-8")
+    assert not raw.startswith(b"\xef\xbb\xbf")
+    requirements = [line.strip() for line in text.splitlines() if line.strip() and not line.lstrip().startswith("#")]
+    assert requirements and all("==" in requirement for requirement in requirements)
+
+
 def test_readme_commands_point_at_real_modules_and_files():
     text = (ROOT / "README.md").read_text(encoding="utf-8")
     for mod in set(re.findall(r"python -m (yottaflex[\w.]*)", text)):

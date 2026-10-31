@@ -63,6 +63,17 @@ def test_diff_reports_changed_missing_and_extra_files(repro):
     assert any("z.csv" in m for m in repro.diff(a, {**a, "z.csv": a["x.csv"]}))
 
 
+def test_committed_comparison_checks_every_generated_file_but_allows_model_outputs(repro):
+    expected = {"employee.csv": {"rows": 2, "sha256": "aa"},
+                "export/schema.sql": {"rows": None, "sha256": "bb"}}
+    committed = {**expected, "model/metrics.json": {"rows": None, "sha256": "cc"}}
+    assert repro.diff_expected_files(expected, committed) == []
+    assert any("export/schema.sql" in mismatch for mismatch in
+               repro.diff_expected_files(expected, {"employee.csv": expected["employee.csv"]}))
+    changed = {**committed, "export/schema.sql": {"rows": None, "sha256": "changed"}}
+    assert any("export/schema.sql" in mismatch for mismatch in repro.diff_expected_files(expected, changed))
+
+
 def test_snapshot_counts_csv_rows_including_quoted_newlines(repro, tmp_path):
     (tmp_path / "t.csv").write_bytes(b'id,note\n1,"two\nlines"\n2,plain\n')
     (tmp_path / "t.json").write_bytes(b"[]\n")
